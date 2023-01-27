@@ -28,15 +28,15 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable(
-                    route = "${AppNavRoute.ArticleDetail.name}/{artikel_id}",
+                    route = "${AppNavRoute.ArticleDetail.name}/{id}",
                     arguments = listOf(
-                        navArgument(name = "artikel_id") {
+                        navArgument(name = "id") {
                             type = NavType.StringType
                         }
                     )
                 ) {
-                    val tmp_artikel_id = it.arguments?.getString("artikel_id") ?: ""
-                    ArticleDetailScreen(artikel_id = tmp_artikel_id)
+                    val id = it.arguments?.getString("id") ?: ""
+                    ArticleDetailScreen(id)
                 }
 
                 composable(route = AppNavRoute.Journaling.name) {
