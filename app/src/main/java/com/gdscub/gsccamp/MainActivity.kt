@@ -16,6 +16,8 @@ import androidx.navigation.navArgument
 import com.gdscub.gsccamp.component.HomeArticlePreview
 import com.gdscub.gsccamp.screen.ArticleDetailScreen
 import com.gdscub.gsccamp.screen.HomeScreen
+import com.gdscub.gsccamp.screen.JournalingResultScreen
+import com.gdscub.gsccamp.screen.JournalingScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,11 +42,22 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable(route = AppNavRoute.Journaling.name) {
-                    //JOURNALING HERE
+                    JournalingScreen(navController = navController)
                 }
 
-                composable(route = AppNavRoute.JournalingResult.name) {
-                    //JOURNALING RESULT HERE
+                composable(
+                    route = "${AppNavRoute.JournalingResult.name}/{sentence}",
+                    arguments = listOf(
+                        navArgument(name = "sentence") {
+                            type = NavType.StringType
+                        }
+                    )
+                ) {
+                    val sentence = it.arguments?.getString("sentence") ?: ""
+                    JournalingResultScreen(
+                        navController = navController,
+                        sentence = sentence
+                    )
                 }
             }
         }

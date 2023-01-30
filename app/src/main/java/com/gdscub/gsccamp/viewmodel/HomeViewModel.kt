@@ -28,4 +28,8 @@ class HomeViewModel : ViewModel() {
             }
         )
     }
+
+    init {
+        getAllArticle()
+    }
 }

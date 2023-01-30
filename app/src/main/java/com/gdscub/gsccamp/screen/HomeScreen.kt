@@ -30,10 +30,6 @@ fun HomeScreen(navController: NavController) {
     val viewModel: HomeViewModel = viewModel()
     val allArticle = viewModel.allArticle.collectAsState()
 
-    LaunchedEffect(key1 = true) {
-        viewModel.getAllArticle()
-    }
-
     Scaffold(topBar = {
         TopAppBar(backgroundColor = AppColor.Primary700) {
             Row(
@@ -49,7 +45,9 @@ fun HomeScreen(navController: NavController) {
                     color = AppColor.Neutral50
                 )
 
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(
+                    onClick = { navController.navigate(route = AppNavRoute.Journaling.name) }
+                ) {
                     Icon(
                         painter = rememberAsyncImagePainter(
                             model = R.drawable.ic_journaling //GANTI DENGAN ICON MU
